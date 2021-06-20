@@ -13,12 +13,42 @@
 .user_nav {
   height: 100px;
   padding: 0 20px;
+  background-color: #253141;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user_name a {
+  /* aに指定しないと文字色がリンクの色から変わらない */
+  color: #fafafa;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.chat_create a {
+  border: 1px solid lightblue;
+  padding: 14px;
+  /* aに指定しても縦方向のpaddingが効いてる? */
+  color: deepskyblue;
+  font-size: 10px;
+  text-decoration: none;
 }
 
 .room_select {
   height: calc(100vh - 100px);
   padding: 0 20px;
   background-color: #2f3e51;
+  overflow: scroll;
+}
+
+.room {
+  padding: 20px 0 40px;
+}
+
+.room_name a {
+  color: white;
+  text-decoration: none;
 }
 
 /* メインチャット部分の設定 */
