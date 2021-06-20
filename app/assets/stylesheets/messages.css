@@ -61,16 +61,105 @@
 .main_header {
   height: 100px;
   padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main_room_name {
+  margin-top: 36px;
+  color: #333;
+  font-size: 24px;
+}
+
+.chat_end {
+  margin-top: 40px;
+  /* 子要素aの文字から40pxになっている。aのborderから40pxではない */
+}
+
+.chat_end a {
+  border: 1px solid darkred;
+  padding: 20px;
+  color: darkred;
+  text-decoration: none;
 }
 
 .main_content {
   height: calc(100vh - 100px - 90px); /* 見返したときにどの値を指しているのかわかるように-190pxにまとめない */
   padding: 46px 40px 0;
   background-color: #fafafa;
+  overflow: scroll;
+
+}
+
+.message {
+  margin: 10px 0 0 0;
+}
+
+.message_header {
+  display: flex;
+}
+
+.message_name {
+  color: #434a54;
+  font-size: 16px;
+}
+
+.message_time {
+  padding-left: 10px;
+  color: #999;
+  font-size: 12px;
+}
+
+.message_footer {
+  margin-top: 10px;
+}
+
+.message_comment {
+  margin-bottom: 40px;
+  color: #434a54;
+  font-size: 14px;
 }
 
 .comment_form {
   height: 90px;
   padding: 20px 40px;
   background-color: #dddddd;
+  display: flex;
+}
+
+.form_input {
+  background-color: white;
+  width: 100%;
+  display: flex;
+}
+
+.form_message {
+  border: none;
+  width: 100%;
+  height: 50px;
+  padding-left: 10px;
+}
+
+.form_image {
+  width: 60px;
+  padding: 12px;
+  margin: 5px 10px;
+  background-color: lightblue;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.form_submit {
+  height: 50px;
+  border: none;
+  padding: 0 20px;
+  margin-left: 15px;
+  background-color: #38aef0;
+  color: white;
+  font-size: 16px;
 }
