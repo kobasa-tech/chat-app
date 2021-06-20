@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+}
+
+/* サイドバー部分の設定 */
+
+.side_bar {
+  width: 300px;
+  height: 100vh;
+  background-color: #253141;
+}
+
+.user_nav {
+  height: 100px;
+  padding: 0 20px;
+}
+
+.room_select {
+  height: calc(100vh - 100px);
+  padding: 0 20px;
+  background-color: #2f3e51;
+}
+
+/* メインチャット部分の設定 */
+
+.main_chat {
+  width: calc(100vw - 300px);
+  background-color: #ffffff;
+}
+
+.main_header {
+  height: 100px;
+  padding: 0 40px;
+}
+
+.main_content {
+  height: calc(100vh - 100px - 90px); /* 見返したときにどの値を指しているのかわかるように-190pxにまとめない */
+  padding: 46px 40px 0;
+  background-color: #fafafa;
+}
+
+.comment_form {
+  height: 90px;
+  padding: 20px 40px;
+  background-color: #dddddd;
+}
