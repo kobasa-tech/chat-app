@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update]
   # 既にルーティングにあるdevise/passwords#editとdevise/password#updateはpassword用。
   # users#editとusers#updateはないので作る必要がある。
+  resources :rooms, only: [:new, :create]
 end
