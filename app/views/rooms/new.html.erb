@@ -1,0 +1,43 @@
+<div class='chat-room-form'>
+  <h1>新規チャットルーム</h1>
+  <%=form_with model: @room, local: true do |f|%>
+    <div class='chat-room-form__field'>
+      <div class='chat-room-form__field--left'>
+        <%= f.label :チャットルーム名, class: 'chat-room-form__label'%>
+      </div>
+      <div class='chat-room-form__field--right'>
+        <%= f.text_field :name, class: 'chat__room_name chat-room-form__input', placeholder: 'チャットルーム名を入力してください'%>
+        <%# form_withのブロック変数fからフォーム部品を作成しているためmodelオプションroomの中にnameキーが入る。バリューは記述したチャットルーム名 %>
+      </div>
+    </div>
+    <div class='chat-room-form__field'>
+    </div>
+    <div class='chat-room-form__field'>
+      <div class='chat-room-form__field--left'>
+        <label class='chat-room-form__label' for='chat_room_チャットメンバー'>チャットメンバー</label>
+      </div>
+      <div class='chat-room-form__field--right'>
+        <select name="room[user_ids][]">
+        <%# name属性にはパラメーターとして渡す値を入れている。form_withのmodelオプションに@roomを指定しているためroomがキーになっている。
+        roomキーのバリューとしてハッシュが入っている。バリューとしてのハッシュのキーはuser_ids。これと対になるバリューが[]によって配列で指定されている。
+        []にはoptionのvalueの値がに入る。つまりユーザー名のユーザーid。%>
+          <option value="">チャットするユーザーを選択してください</option>
+          <% User.where.not(id: current_user.id).each do |user| %>
+          <%# モデル名.where("条件")で条件に一致したレコードを配列として取得する。
+          モデル名.where.not("条件")で条件に一致したレコード以外を取得する。今回はこちらで現在ログインしているユーザー以外を取得している %>
+            <option value=<%= user.id %>><%= user.name %></option>
+            <%# valueの値をselect要素のnameに入れてパラメーターとして渡す。ここでの値は選択したユーザー名のid%>
+          <% end %>
+        </select>
+        <input name="room[user_ids][]" type="hidden" value=<%= current_user.id %>>
+        <%# type="hidden"で見えないinput要素を作成。name属性はselectで指定したものと同じため、配列にvalueの値であるログインユーザーをバリューとして追加している%>
+      </div>
+    </div>
+    <div class='chat-room-form__field'>
+      <div class='chat-room-form__field--left'></div>
+      <div class='chat-room-form__field--right'>
+        <%= f.submit class: 'chat-room-form__action-btn'%>
+      </div>
+    </div>
+  <% end %>
+</div>
