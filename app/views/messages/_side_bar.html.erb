@@ -4,19 +4,17 @@
     <%# link_to '表示される文字', URIパス %>
   </div>
   <div class="chat_create">
-    <a href="#">チャットを作成する</a>
+    <%= link_to "チャットを作成する", new_room_path %>
   </div>
 </div>
 
 <div class="room_select">
-  <div class="room">
-    <div class="room_name">
-      <a href="#">techroom1</a>
+  <% current_user.rooms.each do |room| %>
+  <%# roomsテーブルからログインユーザーが所持しているroomをeachで1つずつ取り出している。 %>
+    <div class="room">
+      <div class="room_name">
+        <a href="#"><%= room.name %></a>
+      </div>
     </div>
-  </div>
-  <div class="room">
-    <div class="room_name">
-      <a href="#">techroom2</a>
-    </div>
-  </div>
+  <% end %>
 </div>
