@@ -16,6 +16,20 @@
         <label class='chat-room-form__label' for='chat_room_チャットメンバー'>チャットメンバー</label>
       </div>
       <div class='chat-room-form__field--right'>
+        <select name="room[user_ids][]">
+        <%# name属性にはパラメーターとして渡す値を入れている。%>
+        <%# ハッシュを入れ子にしたパラメーター{"room" => { "user_ids" => ["選択したユーザーのid"]}} がparamsとして渡される。%>
+        <%# optionのvalueの値が[]に入る。つまりユーザー名のユーザーid。%>
+          <option value="">チャットするユーザーを選択してください</option>
+          <% User.where.not(id: current_user.id).each do |user| %>
+          <%# モデル名.where("条件")で条件に一致したレコードを配列として取得する %>
+          <%# モデル名.where.not("条件")で条件に一致したレコード以外を取得する。今回はこちらで現在ログインしているユーザー以外を取得している %>
+            <option value=<%= user.id %>><%= user.name %></option>
+            <%# valueの値をselect要素のnameに入れてパラメーターとして渡す。ここでの値は選択したユーザー名のid%>
+          <% end %>
+        </select>
+        <input name="room[user_ids][]" type="hidden" value=<%= current_user.id %>>
+        <%# type="hidden"で見えないinput要素を作成。roomのuser.idにvalueの値であるログインユーザーの値を渡している%>
       </div>
     </div>
     <div class='chat-room-form__field'>
