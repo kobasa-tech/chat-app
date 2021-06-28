@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   def index    
     @message = Message.new
-    @room = Room.find(params[:room_id]) #選択したroomのidを取得
+    @room = Room.find(params[:room_id]) #選択したroomのidを取得=選択したroomsテーブルのidのレコード全てを取得している
     @messages = @room.messages.includes(:user)
     # ルームの全てのメッセージを取得。メッセージにはユーザー情報が表示されるためN+1問題を回避。
   end
