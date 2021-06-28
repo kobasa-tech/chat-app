@@ -46,12 +46,14 @@
 
 </div>
 
-<div class="comment_form">
+<%= form_with model: [@room, @message], class: 'comment_form', local: true do |f| %>
+<%# メッセージのルーティングがルームにネストされているため model: [@room,@message]という記述%>
   <div class="form_input">
-    <input class="form_message" placeholder="type a message">
+    <%= f.text_field :content, class: 'form_message', placeholder: 'type a message' %>
     <label class="form_image">
       <span class="image_file">画像</span>
-      <input type="file" class="hidden">
+      <%= f.file_field :image, class: 'hidden' %>
+    </label>
   </div>
-  <input class="form_submit" type="submit" value="送信">
-</div>
+  <%= f.submit '送信', class: 'form_submit' %>
+<% end %>
