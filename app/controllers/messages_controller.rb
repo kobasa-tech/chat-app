@@ -2,6 +2,8 @@ class MessagesController < ApplicationController
   def index    
     @message = Message.new
     @room = Room.find(params[:room_id]) #選択したroomのidを取得
+    @messages = @room.messages.includes(:user)
+    # ルームの全てのメッセージを取得。メッセージにはユーザー情報が表示されるためN+1問題を回避。
   end
 
   def create
@@ -12,6 +14,8 @@ class MessagesController < ApplicationController
     if @message.save
       redirect_to room_messages_path(@room)
     else
+      @messages = @room.messages.includes(:user)
+      # 保存に失敗しても@messagesが定義されていないとエラーになるため記述。
       render :index
     end
     # 新しいインスタンス変数を生成 = 前のインスタンス変数は保存され画面が更新された。ということ
