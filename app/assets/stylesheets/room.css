@@ -89,3 +89,8 @@ select {
   height: 80px;
   width: 100%;
 }
+
+/* エラー時にrailsで自動的に生成される要素のみを表示させない */
+.field_with_errors {
+  display: contents;
+}

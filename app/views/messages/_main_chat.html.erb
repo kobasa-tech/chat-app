@@ -1,57 +1,29 @@
 <div class="main_header">
   <div class="left_header">
     <div class="main_room_name">
-      hogefuga
+      <%= @room.name %><%# @room = Room.find(params[:room_id])room_idを取得=選択したroomsテーブルのidのレコード全てを取得している %>
     </div>
   </div>
   <div class="right_header">
     <div class="chat_end">
-      <a href="#">チャットを終了する</a>
+      <%= link_to "チャットを終了する", room_path(@room)  , method: :delete %>
     </div>
   </div>
 </div>
 
 <div class="main_content">
-  <div class="message">
-    <div class="message_header">
-      <div class="message_name">
-        Tom
-      </div>
-      <div class="message_time">
-        2020/3/31(Wed) 12:43:30
-      </div>
-    </div>
-    <div class="message_footer">
-      <div class="message_comment">
-        おはよう
-      </div>
-    </div>
-  </div>
-
-  <div class="message">
-    <div class="message_header">
-      <div class="message_name">
-        Sim
-      </div>
-      <div class="message_time">
-        2020/3/31(Wed) 12:53:30
-      </div>
-    </div>
-    <div class="message_footer">
-      <div class="message_comment">
-        おはようございます
-      </div>
-    </div>
-  </div>
-
+  <%= render partial: 'message', collection: @messages %>
+  <%# collectionオプションで@messagesに含まれる要素の数(今回はレコードの数)だけ部分テンプレート_message.html.erbを呼び出している %>
 </div>
 
-<div class="comment_form">
+<%= form_with model: [@room, @message], class: 'comment_form', local: true do |f| %>
+<%# メッセージのルーティングがルームにネストされているため model: [@room,@message]という記述%>
   <div class="form_input">
-    <input class="form_message" placeholder="type a message">
+    <%= f.text_field :content, class: 'form_message', placeholder: 'type a message' %>
     <label class="form_image">
       <span class="image_file">画像</span>
-      <input type="file" class="hidden">
+      <%= f.file_field :image, class: 'hidden' %>
+    </label>
   </div>
-  <input class="form_submit" type="submit" value="送信">
-</div>
+  <%= f.submit '送信', class: 'form_submit' %>
+<% end %>
