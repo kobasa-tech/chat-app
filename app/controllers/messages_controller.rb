@@ -28,9 +28,9 @@ class MessagesController < ApplicationController
 
   private
 def message_params
-  params.require(:message).permit(:content).merge(user_id: current_user.id)
+  params.require(:message).permit(:content, :image).merge(user_id: current_user.id)
   # paramsのデータ(ハッシュの形態)に追加したいデータをmergeで結合させている。
-  # {:content=> "(フォームで入力された内容)=(f.text_field :content)", :user_id=> current_user.id}
+  # {:content=> "(フォームで入力された内容)=(f.text_field :content)", :image=> "選択された画像" ,:user_id=> current_user.id}
 end
 
 end

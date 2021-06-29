@@ -15,5 +15,9 @@
       <!-- 投稿したメッセージ内容を記述する -->
       <%= message.content %><%# messagesテーブルのcontentカラムからメッセージ内容を取得 %>
     </div>
+    <%= image_tag message.image.variant(resize: '500x500'), class: 'message-image' if message.image.attached? %>
+    <%# ヘルパーメソッドimage_tagで画像のパス(モデル名.has_one_attachedで紐付けたカラム名)を指定。
+        更にvariantメソッドで画像のサイズを指定している。(指定したサイズは超えず縦横比は守られる)
+        if文でファイルが添付されているときのみ読み込まれるよう処理している %>
   </div>
 </div>
